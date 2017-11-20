@@ -1,0 +1,11 @@
+---
+- name: Deploy RabbitMQ
+  hosts: gce_instances_ips
+  become: yes
+  become_method: sudo
+  roles:
+    - jasonroyle.rabbitmq
+  vars:
+    rabbitmq_plugins:
+      - rabbitmq_management
+    rabbitmq_erlang_cookie: 123abc456def789hig

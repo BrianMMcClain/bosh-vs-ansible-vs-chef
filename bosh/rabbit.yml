@@ -1,0 +1,65 @@
+director_uuid: <DIRECTOR UUID>
+instance_groups:
+- azs:
+  - z1
+  - z2
+  instances: 6
+  jobs:
+  - name: rabbitmq-server
+    properties:
+      rabbitmq-server:
+        administrators:
+          broker:
+            password: broker
+            username: broker
+          management:
+            password: admin
+            username: admin
+        cluster_partition_handling: autoheal
+        cookie: rabbit-cluster:aws
+        plugins:
+        - rabbitmq_management
+        - rabbitmq_mqtt
+        - rabbitmq_stomp
+        ports:
+        - 5672
+        - 5671
+        - 1883
+        - 8883
+        - 61613
+        - 61614
+        - 15672
+        - 15674
+    release: cf-rabbitmq
+  name: rmq
+  networks:
+  - name: default
+  persistent_disk_type: 100GB
+  stemcell: trusty
+  vm_type: n1-highmem-4
+name: cf-rabbitmq
+
+releases:
+- name: cf-rabbitmq
+  url: https://bosh.io/d/github.com/pivotal-cf/cf-rabbitmq-release?v=233.0.0
+  version: 233.0.0
+  sha1: b5624d0528eec6aa4fb62c232687cd4e94644eb1
+- name: routing
+  url: https://bosh.io/d/github.com/cloudfoundry-incubator/cf-routing-release?v=0.166.0
+  version: 0.166.0
+  sha1: 281941aa133070cbbfa6b494e68d0d53121c0a9a
+
+
+stemcells:
+- alias: trusty
+  os: ubuntu-trusty
+  version: 3468.1
+  url: https://s3.amazonaws.com/bosh-core-stemcells/google/bosh-stemcell-3468.1-google-kvm-ubuntu-trusty-go_agent.tgz?v=3468.1
+  sha1: aa785d88d9c3b0eaa37443f7e2818afa358e1ec6
+
+update:
+  canaries: 1
+  canary_watch_time: 30000-180000
+  max_in_flight: 1
+  serial: false
+  update_watch_time: 30000-180000

@@ -1,0 +1,41 @@
+- name: Create instances
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+      service_account_email: <SERVICE ACCOUNT EMAIL>
+      credentials_file: <PATH TO CREDENTIALS FILE>
+      project_id: <PROJECT ID>
+      machine_type: n1-standard-1
+      image: ubuntu-1704-zesty-v20171102
+      zone: us-east1-b
+
+  tasks:
+
+  - name: Launch instances
+    gce:
+      name: ansible-rabbit
+      num_instances: 3
+      machine_type: "{{ machine_type }}"
+      image: "{{ image }}"
+      service_account_email: "{{ service_account_email }}"
+      credentials_file: "{{ credentials_file }}"
+      project_id: "{{ project_id }}"
+      zone: "{{ zone }}"
+    register: gce
+
+  - name: Save host data
+    add_host:
+      hostname: "{{ item.public_ip }}"
+      groupname: gce_instances_ips
+    with_items: "{{ gce.instance_data }}"  
+
+  - name: Wait for SSH
+    wait_for:
+      delay: 1
+      host: "{{ item.public_ip }}"
+      port: 22
+      state: started
+      timeout: 60
+    with_items: "{{ gce.instance_data }}"
