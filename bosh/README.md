@@ -6,6 +6,8 @@ Setup
 
 A BOSH director will be required to deploy via BOSH. Please refer to the documentation on how to set this up for your infrastructure [here](http://bosh.io/docs/init.html).
 
+Alternativly, [BBL](https://github.com/cloudfoundry/bosh-bootloader) will handle much of the setup as well automatically
+
 Additionally, the BOSH CLI is required on your local machine, which can be found [here](http://bosh.io/docs/cli-v2.html#install).
 
 BOSH Lite
