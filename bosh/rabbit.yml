@@ -1,4 +1,4 @@
-director_uuid: <DIRECTOR UUID>
+director_uuid: <DIRECTOR_UUID>
 instance_groups:
 - azs:
   - z1

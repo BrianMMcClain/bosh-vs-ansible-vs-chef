@@ -4,9 +4,9 @@
   gather_facts: no
 
   vars:
-      service_account_email: <SERVICE ACCOUNT EMAIL>
-      credentials_file: <PATH TO CREDENTIALS FILE>
-      project_id: <PROJECT ID>
+      service_account_email: <SERVICE_ACCOUNT_EMAIL>
+      credentials_file: <PATH_TO_CREDENTIALS_FILE>
+      project_id: <PROJECT_ID>
       machine_type: n1-standard-1
       image: ubuntu-1704-zesty-v20171102
       zone: us-east1-b
@@ -23,13 +23,14 @@
       credentials_file: "{{ credentials_file }}"
       project_id: "{{ project_id }}"
       zone: "{{ zone }}"
+      tags: rmq
     register: gce
 
   - name: Save host data
     add_host:
       hostname: "{{ item.public_ip }}"
       groupname: gce_instances_ips
-    with_items: "{{ gce.instance_data }}"  
+    with_items: "{{ gce.instance_data }}"
 
   - name: Wait for SSH
     wait_for:
