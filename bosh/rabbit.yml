@@ -3,7 +3,7 @@ instance_groups:
 - azs:
   - z1
   - z2
-  instances: 6
+  instances: 3
   jobs:
   - name: rabbitmq-server
     properties:
