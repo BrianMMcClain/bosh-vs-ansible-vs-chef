@@ -54,8 +54,6 @@ stemcells:
 - alias: trusty
   os: ubuntu-trusty
   version: 3468.1
-  url: https://s3.amazonaws.com/bosh-core-stemcells/google/bosh-stemcell-3468.1-google-kvm-ubuntu-trusty-go_agent.tgz?v=3468.1
-  sha1: aa785d88d9c3b0eaa37443f7e2818afa358e1ec6
 
 update:
   canaries: 1
