@@ -30,9 +30,7 @@ Alternatively, you can download the RabbitMQ cookbook, but you may need to downl
     knife cookbook site download rabbitmq
     tar xvzf rabbitmq-5.3.1.tar.gz
     knife cookbook upload rabbitmq --include-dependencies
-
-#### Create Servers
-
+    
 Deploy
 ---
 
