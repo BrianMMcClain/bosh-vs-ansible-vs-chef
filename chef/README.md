@@ -3,7 +3,7 @@ Chef
 
 Setup
 ---
-Setup [Chef Server](https://docs.chef.io/install_server.html#standalone) along with the Chef DK (client) on your workstation machine. A good walkthrough of this process can be followed [here](https://learn.chef.io/modules/manage-a-node-chef-server#/)).
+Setup [Chef Server](https://docs.chef.io/install_server.html#standalone) along with the Chef DK (client) on your workstation machine. A good walkthrough of this process can be followed [here](https://learn.chef.io/modules/manage-a-node-chef-server#/).
 
 For installing on GCP, the [knife-google](https://github.com/chef/knife-google) plugin is also required. Install it by running `chef gem install knife-google`.
 
